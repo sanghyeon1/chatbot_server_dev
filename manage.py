@@ -1,22 +1,37 @@
-#!/usr/bin/env python
-"""Django's command-line utility for administrative tasks."""
-import os
-import sys
+from flask import Flask, request, jsonify
+
+manage = Flask(__name__)
 
 
-def main():
-    """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-    try:
-        from django.core.management import execute_from_command_line
-    except ImportError as exc:
-        raise ImportError(
-            "Couldn't import Django. Are you sure it's installed and "
-            "available on your PYTHONPATH environment variable? Did you "
-            "forget to activate a virtual environment?"
-        ) from exc
-    execute_from_command_line(sys.argv)
+@manage.route("/")
+def hello():
+    return "Hello goorm!"
 
 
-if __name__ == '__main__':
-    main()
+@manage.route("/Person", methods=['POST'])
+def Person():
+    req = request.get_json()
+    Person_Number = req["action"]["detailParams"]["Person_Number"]["value"]  # json파일 읽기
+
+    answer = Person_Number
+
+    # 답변 텍스트 설정
+    res = {
+        "version": "2.0",
+        "template": {
+            "outputs": [
+                {
+                    "simpleText": {
+                        "text": answer
+                    }
+                }
+            ]
+        }
+    }
+
+    # 답변 전송
+    return jsonify(res)
+
+
+if __name__ == "__main__":
+    manage.run(host='0.0.0.0', port=5000, threaded=True)
