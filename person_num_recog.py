@@ -33,7 +33,6 @@ def person_num_return(c):
 
 while True:
     ret, frame = cap.read()
-
     ClassIndex, confidence, bbox = model.detect(frame, confThreshold=0.55)
     # confThreshold : 신뢰도를 기준으로 상자를 필터링하는 데 사용되는 임계값입니다.
     # detect() returns (classIds, confidences, boxes)
@@ -59,7 +58,7 @@ while True:
 
     if cv2.waitKey(2) & 0xFF == ord('q'):
         break
-    break
+    #break
 
 cap.release()
 cv2.destroyAllWindows()
