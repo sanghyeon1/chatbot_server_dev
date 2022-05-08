@@ -26,6 +26,11 @@ if not cap.isOpened():
 font_scale = 1
 font = cv2.FONT_HERSHEY_PLAIN  # small size sans-serif font : 글꼴을 설정함.
 
+
+def person_num_return(c):
+    return c - 1
+
+
 while True:
     ret, frame = cap.read()
 
@@ -50,8 +55,11 @@ while True:
     cv2.putText(frame, f'Total Persons : {c - 1}', (20, 430), cv2.FONT_HERSHEY_DUPLEX, 0.8, (255, 255, 255), 2)
     cv2.imshow('object Detection Tutorial', frame)
 
+    person_num_return(c - 1)
+
     if cv2.waitKey(2) & 0xFF == ord('q'):
         break
+    break
 
 cap.release()
 cv2.destroyAllWindows()

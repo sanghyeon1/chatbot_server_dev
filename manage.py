@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-
+from person_num_recog import person_num_return as pnr
 manage = Flask(__name__)
 
 
@@ -14,7 +14,7 @@ def Person():
     Person_Number = req["action"]["detailParams"]["Person_Number"]["value"]  # json파일 읽기
 
     answer = Person_Number
-
+    person_answer = pnr()
     # 답변 텍스트 설정
     res = {
         "version": "2.0",
@@ -22,7 +22,7 @@ def Person():
             "outputs": [
                 {
                     "simpleText": {
-                        "text": answer
+                        "text": person_answer
                     }
                 }
             ]
