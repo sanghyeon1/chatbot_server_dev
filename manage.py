@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from person_num_recog import person_num_return as pnr
+from main import person_num_return as pnr
 manage = Flask(__name__)
 
 
