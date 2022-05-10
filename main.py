@@ -27,8 +27,8 @@ font_scale = 1
 font = cv2.FONT_HERSHEY_PLAIN  # small size sans-serif font : 글꼴을 설정함.
 
 
-def person_num_return(c):
-    return c - 1
+def person_num_return(pn):
+    return pn - 1
 
 
 while True:
